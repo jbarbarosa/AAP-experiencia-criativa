@@ -1,4 +1,5 @@
 import json
+from disciplinas import *
 
 def escrever_json(data, file_name):
     with open(file_name + '.json', 'w') as f:
@@ -137,19 +138,25 @@ def operacao(tabela):
                 ativo = False
 
 def menu ():
-    opcoes = ['1','9']
+    opcoes = ['1','3','6']
     ativo = True
     while ativo:
         limpar_tela()
         opcao = input (
           'Selecione a opção desejada:\n'
           '(1) Gerenciar estudantes.\n'
-          '(9) Sair.\n\n'
-          'Faça sua escolha: '
+          '(2) Gerenciar professores.\n'
+          '(3) Gerenciar disciplinas.\n'
+          '(4) Gerenciar turmas.\n'
+          '(5) Gerenciar matriculas.\n'
+          '(6) Sair.\n\n'
+          '> '
         ).lower()
         if opcao in opcoes:
             if opcao == '1':
                 operacao(tabela1)
+            elif opcao == '3':
+                operacao(tabela3)
             elif opcao == '9':
                 ativo = False
             else:
