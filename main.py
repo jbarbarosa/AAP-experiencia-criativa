@@ -60,7 +60,7 @@ def atualizar_registro(file_name):
         finalizar_programa()
     colunas = eval(file_name)
     for coluna in colunas:
-        valor = input('Informe {coluna}: ')
+        valor = input('Informe novo valor para ' + coluna + '\n' + '> ')
         registro[coluna] = valor
     data[identificador] = registro
     escrever_json(data, file_name)
@@ -117,15 +117,18 @@ def limpar_tela():
     print('\n' * 100)
             
 def operacao(tabela):
-    opcoes = ['1', '9']
+    opcoes = ['1', '2', '3', '4','5']
     ativo = True
     while ativo:
         limpar_tela()
         print(
           'O que você deseja fazer na base', tabela,':\n'
           '(1) Criar novo registro.\n'
-          '(9) Voltar menu.\n\n'
-          'Faça sua escolha: '
+          '(2) Alterar registro.\n'
+          '(3) Ler registros.\n'
+          '(4) Apagar registro.\n'
+          '(5) Voltar menu.\n\n'
+          '> '
         )
         opcao = input().lower()
         if opcao not in opcoes:
@@ -134,7 +137,13 @@ def operacao(tabela):
             limpar_tela()
             if opcao == '1':
                 criar_novo_registro(tabela)
-            elif opcao == '9':
+            elif opcao == '2':
+                atualizar_registro(tabela)
+            elif opcao == '3':
+                ler_registro(tabela)
+            elif opcao == '4':
+                remover_registro(tabela)
+            elif opcao == '5':
                 ativo = False
 
 def menu ():
@@ -157,7 +166,7 @@ def menu ():
                 operacao(tabela1)
             elif opcao == '3':
                 operacao(tabela3)
-            elif opcao == '9':
+            elif opcao == '6':
                 ativo = False
             else:
                 print('Opção inválida. Tente novamente.')
