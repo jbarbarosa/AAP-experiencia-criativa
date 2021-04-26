@@ -1,1 +1,33 @@
-{}
+{
+def operacao(tabela):
+    opcoes = ['1','2','3','4','5','9']
+    ativo = True
+    while ativo:
+        limpar_tela()
+        print('O que você deseja fazer na base',tabela,':\n\n'
+                      '(1) Criar novo registro.\n'
+                      '(2) Atualizar registro.\n'
+                      '(3) Excluir registro. \n'
+                      '(4) Buscar registro.\n'
+                      '(5) Listar registro.\n'
+                      '(9) Voltar menu.\n\n'
+                      'Faça sua escolha: ')
+        opcao = input().lower()
+
+        if opcao not in opcoes:
+            input('Opção invalida! Tente novamente ...')
+        else:
+            limpar_tela()
+            if opcao == '1':
+                criar_novo_registro(tabela)
+            if opcao == '2':
+                atualizar_registro(tabela)
+            if opcao == '3':
+                remover_registro(tabela)
+            if opcao == '4':
+                buscar_por_coluna(tabela)
+            if opcao == '5':
+                listar_registro(tabela)
+            elif opcao == '9':
+                ativo = False
+}
