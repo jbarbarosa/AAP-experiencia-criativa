@@ -1,4 +1,5 @@
 import json
+from json.decoder import JSONDecodeError
 from estudantes import *
 from disciplinas import *
 from professores import *
@@ -20,6 +21,9 @@ def ler_json(file_name):
             f.close()
             return data
     except FileNotFoundError:
+        escrever_json(data, file_name)
+        return data
+    except JSONDecodeError:
         escrever_json(data, file_name)
         return data
 
@@ -50,13 +54,12 @@ def ler_registro(file_name):
         identificador = input('Entre com o ID:')
         if identificador in data.keys():
             registro = data[identificador]
-            print('Registro =', registro)
-            sim = False
+            print('Registro =', registro)            
         else:
-            print('ID sem registro!')
-            resposta = input('Deseja buscar outro ID? (s/n)').lower()
-            if 'n' in resposta:
-                sim = False
+            print('ID sem registro!')        
+        resposta = input('Deseja buscar outro ID? (s/n)').lower()
+        if 'n' in resposta:
+            sim = False
     return registro, identificador
 
 
@@ -195,8 +198,9 @@ def menu():
                 operacao(tabela5)
             elif opcao == '6':
                 ativo = False
-            else:
-                print('Opção inválida. Tente novamente.')
+        else:
+            print('Opção {} inválida. Tente novamente.'.format(opcao))
+            input('Pressione qualquer tecla para continuar...')
     finalizar_programa()
 
 
